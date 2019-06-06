@@ -1,0 +1,8 @@
+#ifndef UI_H
+#define UI_H
+
+#include "globals.h"
+
+void show_grid(grid_t ** grid, int size);
+
+#endif
