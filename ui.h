@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void show_grid(grid_t ** grid, int size);
+void show_grid(grid_t ** grid, grid_size_t size);
 
 #endif

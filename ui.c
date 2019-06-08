@@ -2,14 +2,14 @@
 
 #include <stdio.h>
 
-void show_grid(grid_t ** grid, int size) {
+void show_grid(grid_t ** grid, grid_size_t size) {
     printf("┌");
-    for (int i=0; i<size-1; ++i)
+    for (grid_size_t i=0; i<size-1; ++i)
         printf("───┬");
     printf("───┐");
-    for (int i=0; i<size; ++i) {
+    for (grid_size_t i=0; i<size; ++i) {
         printf("\n│");
-        for (int j=0; j<size; ++j) {
+        for (grid_size_t j=0; j<size; ++j) {
             if (grid[i][j] == 0)
                 printf("   │");
             else
@@ -17,13 +17,13 @@ void show_grid(grid_t ** grid, int size) {
         }
         if (i != size-1) {
             printf("\n├");
-            for (int j=0; j<size-1; ++j)
+            for (grid_size_t j=0; j<size-1; ++j)
                 printf("───┼");
             printf("───┤");
         }
     }
     printf("\n└");
-    for (int i=0; i<size-1; ++i)
+    for (grid_size_t i=0; i<size-1; ++i)
         printf("───┴");
     printf("───┘\n");
 }

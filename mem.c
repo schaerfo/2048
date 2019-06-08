@@ -2,13 +2,13 @@
 
 #include "stdlib.h"
 
-grid_t ** init_grid(int size) {
+grid_t ** init_grid(grid_size_t size) {
     grid_t * grid_start = (grid_t*) malloc(size * size * sizeof (grid_t));
     grid_t ** ret = (grid_t**) malloc(size * sizeof(grid_t*));
-    for (int i=0; i<size*size; ++i)
+    for (grid_size_t i=0; i<size*size; ++i)
         grid_start[i] = 0;
 
-    for (int i=0; i<size; ++i)
+    for (grid_size_t i=0; i<size; ++i)
         ret[i] = &(grid_start[i*size]);
     return ret;
 }
