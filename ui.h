@@ -10,8 +10,7 @@ void show_grid(grid_t ** grid, grid_size_t size);
 
 typedef enum {
     MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT,
-    HELP,
-    INFO
+    HELP, INFO, QUIT
 } user_action;
 
 user_action get_user_action();

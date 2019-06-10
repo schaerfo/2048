@@ -78,6 +78,8 @@ user_action get_user_action() {
             case 'A': printf("\n"); return MOVE_LEFT;
             case 'd':
             case 'D': printf("\n"); return MOVE_RIGHT;
+            case 'q':
+            case 'Q': printf("\n"); return QUIT;
         }
         printf("Invalid input, try again\n");
     }
@@ -86,6 +88,7 @@ user_action get_user_action() {
 void show_help() {
     printf("h: Show help\n"
            "i: Show info\n"
+           "q: Quit\n"
            "w: Move grid up\n"
            "s: Move grid down\n"
            "a: Move grid left\n"
