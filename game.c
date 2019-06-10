@@ -9,23 +9,24 @@ void initialize_rng() {
 }
 
 void add_number(grid_t ** g, grid_size_t s) {
-    /* Find out which spots in g are free, store their indices */
-    grid_size_t occupied_spot_count = 0;
-    unsigned int* free_spot_map = calloc(s*s, sizeof(int*));
+    /* Find out which spots in g are free, store their adresses */
+    grid_size_t free_spot_count = 0;
+    grid_t ** free_spots = calloc(s*s, sizeof(grid_t *));
+    grid_t ** next_free = free_spots;
+    for (grid_t * it=*g; it<&(g[0][s*s]); ++it){
+        if (!(*it)) {
+            ++free_spot_count;
+            *next_free = it;
+            ++next_free;
+        }
+    }
 
-    for(unsigned int i=0; i<s*s; ++i){
-        if ((*g)[i])
-            ++occupied_spot_count;
-        else
-            free_spot_map[i-occupied_spot_count] = i;
-    }
-    unsigned int available_count = s*s - occupied_spot_count;
-    if (available_count){
-        unsigned int pos = (unsigned int) rand() % (available_count);
+    if (free_spot_count){
+        grid_size_t pos = (grid_size_t) rand() % free_spot_count;
         bool use4 = rand() % 4;
-        (*g)[free_spot_map[pos]] = use4 ? 1 : 2;
+        free_spots[pos][0] = use4 ? 1 : 2;
     }
-    free(free_spot_map);
+    free(free_spots);
 }
 
 bool move_fields(grid_t ** fields, grid_size_t s){
