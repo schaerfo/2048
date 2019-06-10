@@ -16,4 +16,7 @@ typedef enum {
 
 user_action get_user_action();
 
+void show_help();
+void show_info();
+
 #endif

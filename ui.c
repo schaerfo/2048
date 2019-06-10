@@ -59,7 +59,7 @@ void show_grid(grid_t ** grid, grid_size_t size) {
 
 user_action get_user_action() {
     for(;;) {
-        printf("Input: ");
+        printf("Input ('h' for help): ");
 #ifdef __linux__
         int inp = getchar();
 #elif _WIN32
@@ -67,19 +67,35 @@ user_action get_user_action() {
 #endif
         switch (inp) {
             case 'h':
-            case 'H': return HELP;
+            case 'H': printf("\n"); return HELP;
             case 'i':
-            case 'I': return INFO;
+            case 'I': printf("\n"); return INFO;
             case 'w':
-            case 'W': return MOVE_UP;
+            case 'W': printf("\n"); return MOVE_UP;
             case 's':
-            case 'S': return MOVE_DOWN;
+            case 'S': printf("\n"); return MOVE_DOWN;
             case 'a':
-            case 'A': return MOVE_LEFT;
+            case 'A': printf("\n"); return MOVE_LEFT;
             case 'd':
-            case 'D': return MOVE_RIGHT;
+            case 'D': printf("\n"); return MOVE_RIGHT;
         }
         printf("Invalid input, try again\n");
     }
-    
+}
+
+void show_help() {
+    printf("h: Show help\n"
+           "i: Show info\n"
+           "w: Move grid up\n"
+           "s: Move grid down\n"
+           "a: Move grid left\n"
+           "d: Move grid right\n");
+}
+
+void show_info() {
+    printf("C implementation of 2048\n"
+           "Inspired by: github.com/gabrielecirulli/2048\n"
+           "Website: github.com/schaerfo/2048\n"
+           "Contributors (in alphabetical order):\n"
+           " * Christian Schärf <c.schaerf@t-online.de>\n");
 }
