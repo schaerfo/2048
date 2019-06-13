@@ -14,7 +14,8 @@ void game_loop(grid_t ** g, grid_size_t s) {
             case INFO: show_info(); break;
             case QUIT: return;
             default:
-                add_number(g, s);
+                if (move_grid(act, g, s))
+                    add_number(g, s);
                 show_grid(g, s);
         }
     }

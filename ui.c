@@ -80,8 +80,8 @@ user_action get_user_action() {
             case 'D': printf("\n"); return MOVE_RIGHT;
             case 'q':
             case 'Q': printf("\n"); return QUIT;
+            default: printf("Invalid input, try again\n");
         }
-        printf("Invalid input, try again\n");
     }
 }
 
