@@ -1,77 +1,20 @@
-# This file is used to ignore files which are generated
-# ----------------------------------------------------------------------------
+### Some IDE-generated files
 
-*~
-*.autosave
-*.a
-*.core
-*.moc
-*.o
-*.obj
-*.orig
-*.rej
-*.so
-*.so.*
-*_pch.h.cpp
-*_resource.rc
-*.qm
-.#*
-*.*#
-core
-!core/
-tags
-.DS_Store
-.directory
-*.debug
-Makefile*
-*.prl
-*.app
-moc_*.cpp
-ui_*.h
-qrc_*.cpp
-Thumbs.db
-*.res
-*.rc
-/.qmake.cache
-/.qmake.stash
-
-# qtcreator generated files
-*.pro.user*
-
-# xemacs temporary files
-*.flc
-
-# Vim temporary files
-.*.swp
-
-# Visual Studio generated files
-*.ib_pdb_index
-*.idb
-*.ilk
-*.pdb
-*.sln
-*.suo
-*.vcproj
-*vcproj.*.*.user
-*.ncb
-*.sdf
-*.opensdf
-*.vcxproj
-*vcxproj.*
-
-# MinGW generated files
-*.Debug
-*.Release
-
-# Python byte code
-*.pyc
-
-# Binaries
-# --------
-*.dll
-*.exe
-
-# Some IDE files
+# JetBrains CLion
 .idea
-CMakeLists.txt.user*
 cmake-build-*
+
+# QtCreator
+CMakeLists.txt.user*
+
+# KDevelop
+.kdev4
+2048.kdev4
+build
+
+### CMake-generated build files
+2048
+Makefile
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles
