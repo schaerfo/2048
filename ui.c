@@ -19,7 +19,7 @@ void prepare_terminal() {
     struct termios term_mod = term_orig;
     /* We are not waiting for the enter key in getchar() and we
        do not want the input to appear in the terminal */
-    term_mod.c_lflag &= ~ (ICANON|ECHO);
+    term_mod.c_lflag &= ~ (ICANON/*|ECHO*/);
     tcsetattr(STDIN_FILENO, TCSANOW, &term_mod);
 #endif /* Nothing to do on Windows */
 }
