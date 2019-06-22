@@ -1,11 +1,19 @@
 #include "game.h"
 
-#include <stdbool.h>
+#include "ui.h"
+#include "mem.h"
+
 #include <stdlib.h>
+#ifndef __m68k__
 #include <time.h>
+#endif
 
 void initialize_rng() {
+#ifdef __m68k__
+    randomize();
+#else
     srand((unsigned int)time(NULL));
+#endif
 }
 
 void add_number(grid_t ** g, grid_size_t s) {

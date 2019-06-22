@@ -1,6 +1,6 @@
 #include "globals.h"
 
-#include <stdbool.h>
+#include "bool.h"
 
 void initialize_rng();
 

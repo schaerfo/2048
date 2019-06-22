@@ -5,8 +5,10 @@
 #ifdef __linux__
   #include <termios.h>
   #include <unistd.h>
-#elif _WIN32
+#elif defined(_WIN32)
   #include <conio.h>
+#elif defined(__m68k__)
+  #include <kbd.h>
 #endif
 
 #ifdef __linux__
@@ -29,7 +31,6 @@ void finalize_terminal() {
     tcsetattr(STDIN_FILENO, TCSANOW, &term_orig);
 #endif /* Nothing to do on Windows */
 }
-
 
 void show_grid(grid_t ** grid, grid_size_t size) {
     printf("┌");
@@ -62,8 +63,10 @@ user_action get_user_action() {
         printf("Input ('h' for help): ");
 #ifdef __linux__
         int inp = getchar();
-#elif _WIN32
+#elif defined(_WIN32)
         int inp = getch();
+#elif defined(__m68k__)
+        short inp = ngetchx();
 #endif
         switch (inp) {
             case 'h':
@@ -80,7 +83,7 @@ user_action get_user_action() {
             case 'D': printf("\n"); return MOVE_RIGHT;
             case 'q':
             case 'Q': printf("\n"); return QUIT;
-            default: printf("Invalid input, try again\n");
+            default: printf("\nInvalid input, try again\n");
         }
     }
 }
