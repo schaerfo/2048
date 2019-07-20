@@ -12,7 +12,7 @@
 #endif
 
 #ifdef __linux__
-struct termios term_orig;
+static struct termios term_orig;
 #endif
 
 void prepare_terminal() {
@@ -39,7 +39,7 @@ void show_grid(grid_t ** grid, grid_size_t size) {
     printf("───┐");
     for (grid_t **i = grid; i<&(grid[size]); ++i) {
         printf("\n│");
-        for (grid_t *j=*i; j<&((*i)[size]); ++j) {
+        for (grid_t *j=*i; j<&(i[0][size]); ++j) {
             if (*j == 0)
                 printf("   │");
             else
