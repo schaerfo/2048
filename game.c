@@ -31,7 +31,7 @@ void add_number(grid_t ** g, grid_size_t s) {
 
     if (free_spot_count){
         grid_size_t pos = (grid_size_t) rand() % free_spot_count;
-        bool use4 = rand() % 4;
+        bool use4 = rand() % 9;
         free_spots[pos][0] = use4 ? 1 : 2;
     }
     free(free_spots);
