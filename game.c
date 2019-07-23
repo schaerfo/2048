@@ -42,11 +42,14 @@ bool move_fields(grid_t ** fields, grid_size_t s){
     bool ret = false;
     while (it != &(fields[s-1])){
         // Field not occupied, but next field is:
-        // move value from next field, then continue from beginning
+        // move value from next field
+        // then go to the previous field (to see if we can move further)
+        // unless we are at the start
         if (!(**it) && **(it+1)) {
             **it = **(it+1);
             **(it+1) = 0;
-            it = fields;
+            if (it != fields)
+                --it;
             ret |= true;
         }
 
