@@ -106,22 +106,61 @@ user_action get_user_action() {
 #elif defined(__m68k__)
         short inp = ngetchx();
 #endif
+        user_action res;
         switch (inp) {
             case 'h':
-            case 'H': printf("\n"); return HELP;
+            case 'H':
+                res = HELP; break;
             case 'i':
-            case 'I': printf("\n"); return INFO;
+            case 'I':
+                res = INFO;  break;
+#ifdef __m68k__
+            case 337:
+#else
             case 'w':
-            case 'W': printf("\n"); return MOVE_UP;
+            case 'W':
+#endif
+                res = MOVE_UP; break;
+#ifdef __m68k__
+            case 340:
+#else
             case 's':
-            case 'S': printf("\n"); return MOVE_DOWN;
+            case 'S':
+#endif
+                res = MOVE_DOWN; break;
+#ifdef __m68k__
+            case 338:
+#else
             case 'a':
-            case 'A': printf("\n"); return MOVE_LEFT;
+            case 'A':
+#endif
+                res = MOVE_LEFT; break;
+#ifdef __m68k__
+            case 344:
+#else
             case 'd':
-            case 'D': printf("\n"); return MOVE_RIGHT;
+            case 'D':
+#endif
+                res = MOVE_RIGHT; break;
+#ifdef __m68k__
+            case 264:
+#else
             case 'q':
-            case 'Q': printf("\n"); return QUIT;
-            default: printf("\nInvalid input, try again\n");
+            case 'Q':
+#endif
+                res = QUIT; break;
+            default: res = INVALID;
+        }
+#ifdef __m68k__
+        if (res != INVALID) {
+#else
+        printf ("\n");
+        if (res == INVALID) {
+            printf ("Invalid input, try again\n");
+        }
+        else {
+#endif
+            return res;
         }
     }
 }
@@ -141,8 +180,8 @@ void show_help() {
 void show_info() {
 #ifndef __m68k__
     printf("C implementation of 2048\n"
-           "Inspired by: github.com/gabrielecirulli/2048\n"
-           "Website: github.com/schaerfo/2048\n"
+           "Inspired by: https://github.com/gabrielecirulli/2048\n"
+           "Website: https://github.com/schaerfo/2048\n"
            "Contributors (in alphabetical order):\n"
            " * Christian Schärf <c.schaerf@t-online.de>\n");
 #endif
