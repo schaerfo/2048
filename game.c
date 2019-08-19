@@ -38,33 +38,49 @@ void add_number(grid_t ** g, grid_size_t s) {
 }
 
 bool move_fields(grid_t ** fields, grid_size_t s){
-    grid_t ** it = fields;
+    // Previous field with a non-zero value
+    grid_t ** prev_number = NULL;
+    // Let's see whether we have a number in the first field
+    if (**fields)
+        prev_number = fields;
+
+    // We start at the second field
+    grid_t ** it = &(fields[1]);
     bool ret = false;
-    while (it != &(fields[s-1])){
-        // Field not occupied, but next field is:
-        // move value from next field
-        // then go to the previous field (to see if we can move further)
-        // unless we are at the start
-        if (!(**it) && **(it+1)) {
-            **it = **(it+1);
-            **(it+1) = 0;
-            if (it != fields)
-                --it;
-            ret |= true;
-        }
+    while (it != &(fields[s])){
+        if (prev_number){
+            // We can merge the fields
+            if (**it && (**prev_number == **it)){
+                ++(**prev_number);
+                **it = 0;
+                ret = true;
+            }
 
-        // Field and next field have same value (but not 0!):
-        // increment field and set next field to 0
-        // also advance iterator
-        else if (**it && (**it == **(it+1))){
-            ++(**it);
-            ++it;
-            **it = 0;
-            ret |= true;
-        }
+            // We can move the field
+            else if (prev_number != it-1){
+                **(prev_number+1) = **it;
+                **it = 0;
+                ++prev_number;
+                ret = true;
+            }
 
-        // Else: do not do anything, just advance iterator
-        else ++it;
+            // Nothing done -> reset prev_number if required
+            else {
+                if (**it){
+                    prev_number = it;
+                }
+            }
+        }
+        // Don't have a field with a previous number -> move to the start if field is non-zero
+        else {
+            if (**it) {
+                **fields = **it;
+                **it = 0;
+                prev_number = fields;
+                ret = true;
+            }
+        }
+        ++it;
     }
     return ret;
 }
